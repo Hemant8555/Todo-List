@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To DO</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <style>
+      * {
+        min-height: 100%;
+        font-family: "Sansation";
+      }
+      body {
+        background: linear-gradient(
+          45deg,
+          rgba(255, 255, 255, 1) 50%,
+          rgba(72, 72, 72, 1) 50%
+        );
+      }
+      .container {
+        text-align: center;
+      }
+      #ta {
+        width: 50%;
+        background-color: grey;
+        height: 30px;
+        border: none;
+        padding: 5px;
+        color: white;
+      }
+      #ta::placeholder {
+        color: whitesmoke;
+      }
+
+      #sbtn {
+        color: grey;
+        height: 40px;
+        border: none;
+        color: black;
+        cursor: pointer;
+      }
+
+      ul {
+        list-style-type: none;
+      }
+      h1 {
+        color: white;
+      }
+      li {
+        background-color: black;
+        color: white;
+        height: 35px;
+        opacity: 0.5;
+        text-align: left;
+        font-size: large;
+        margin: 5px;
+      }
+      .fa {
+        font-size: 30px;
+      }
+      .fa-trash {
+        position: relative;
+        float: right;
+        right: 100px;
+        color: red;
+        cursor: pointer;
+      }
+      .fa-check {
+        position: relative;
+        float: right;
+        color: rgb(170, 226, 170);
+        cursor: pointer;
+      }
+
+      .checked {
+        background-color: green;
+        text-decoration: line-through;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>To Do App</h1>
+      <input type="text" id="ta" placeholder="Enter Task" />
+      <button id="sbtn">Submit</button>
+      <ul></ul>
+    </div>
+  </body>
+
+  <script src="jquery-3.6.0.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $("#sbtn").click(function () {
+        if ($("#ta").val().length != 0) {
+          var x = $("#ta").val();
+          $("ul").append(
+            "<li>" +
+              x +
+              '<i class="fa fa-check"></i> <i class="fa fa-trash"></i></li>'
+          );
+          $("#ta").val("");
+        }
+      });
+      $("ul").on("click", ".fa-trash", function () {
+        $(this).parent("li").fadeOut(1000);
+      });
+
+      $("ul").on("click", ".fa-check", function () {
+        $(this).parent().toggleClass("checked");
+      });
+    });
+  </script>
+</html>
